@@ -1,12 +1,12 @@
 from django.urls import path
 #El utilizar ese punto significa que importa desde el archivo actual. en este caso myapp
-from . import views
+from .views import CustomLoginView, home, register_view, main_page_view
 
 
 urlpatterns = [
-    path('', views.index),
-    path('about/', views.about),
-    path('hello/<str:username>', views.hello),
-    path('projects/', views.projects),
-    path('tasks/<int:id>', views.tasks)
+    path('', home, name='home'),
+    path('login/', CustomLoginView.as_view(template_name='login.html'), name='login'),
+    path('register/', register_view, name='register'),
+    path('main_page/', main_page_view, name='main_page')
+    #Aqui se agregan mas urls para la aplicacion
 ]
